@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useText } from '../../contexts/TextContext';
 import Wrapper from './Wrapper';
 
-const AVERAGE_WORDS_PER_MINUTE = 200;
+const AVERAGE_CHARACTERS_PER_MINUTE = 1000;
 
 const ReadingTime = () => {
 	const { text } = useText();
@@ -10,7 +10,9 @@ const ReadingTime = () => {
 
 	useEffect(() => {
 		if (text != '')
-			setMinutes(Math.floor(text.length / AVERAGE_WORDS_PER_MINUTE) + 1);
+			setMinutes(
+				Math.floor(text.length / AVERAGE_CHARACTERS_PER_MINUTE) + 1
+			);
 		else setMinutes(undefined);
 	}, [text]);
 
